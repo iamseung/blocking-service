@@ -26,7 +26,6 @@ public class User extends AuditingFields {
         this.password = password;
     }
 
-    @Builder
     public User(String userId, String password) {
         this.userId = userId;
         this.password = password;
@@ -37,6 +36,6 @@ public class User extends AuditingFields {
     }
 
     public static User of(String userId, String password) {
-        return new User(null, userId, password);
+        return new User(userId, password);
     }
 }
