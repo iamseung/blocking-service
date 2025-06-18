@@ -2,12 +2,12 @@
 package com.example.blocking_service.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Entity
 @Table(name = "user")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends AuditingFields {
 
     @Id
@@ -19,4 +19,24 @@ public class User extends AuditingFields {
 
     @Column(nullable = false)
     @Setter private String password;
+
+    public User(Long id, String userId, String password) {
+        this.id = id;
+        this.userId = userId;
+        this.password = password;
+    }
+
+    @Builder
+    public User(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
+
+    public static User of(Long id, String userId, String password) {
+        return new User(id, userId, password);
+    }
+
+    public static User of(String userId, String password) {
+        return new User(null, userId, password);
+    }
 }
