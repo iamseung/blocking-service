@@ -1,5 +1,5 @@
 
-package com.example.blocking_service.entity;
+package com.example.blocking_service.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,10 +29,6 @@ public class User extends AuditingFields {
     private User(String userId, String password) {
         this.userId = userId;
         this.password = password;
-    }
-
-    public static User of(Long id, String userId, String password) {
-        return new User(id, userId, password);
     }
 
     public static User of(String userId, String password) {

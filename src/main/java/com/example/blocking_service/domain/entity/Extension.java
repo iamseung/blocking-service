@@ -1,4 +1,4 @@
-package com.example.blocking_service.entity;
+package com.example.blocking_service.domain.entity;
 
 import com.example.blocking_service.exception.BaseException;
 import jakarta.persistence.*;
