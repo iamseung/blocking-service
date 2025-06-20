@@ -1,4 +1,4 @@
-package com.example.blocking_service.dto;
+package com.example.blocking_service.domain.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

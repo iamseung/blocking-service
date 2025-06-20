@@ -1,7 +1,7 @@
 package com.example.blocking_service.service;
 
-import com.example.blocking_service.dto.CustomUserDetails;
-import com.example.blocking_service.entity.User;
+import com.example.blocking_service.domain.dto.CustomUserDetails;
+import com.example.blocking_service.domain.entity.User;
 import com.example.blocking_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

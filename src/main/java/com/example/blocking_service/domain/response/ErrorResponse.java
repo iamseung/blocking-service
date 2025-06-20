@@ -1,4 +1,4 @@
-package com.example.blocking_service.dto;
+package com.example.blocking_service.domain.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

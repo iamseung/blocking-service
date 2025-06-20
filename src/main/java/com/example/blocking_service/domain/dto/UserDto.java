@@ -1,6 +1,6 @@
-package com.example.blocking_service.dto;
+package com.example.blocking_service.domain.dto;
 
-import com.example.blocking_service.entity.User;
+import com.example.blocking_service.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -17,10 +17,6 @@ public class UserDto {
 
     public static UserDto of(String userId, String password) {
         return new UserDto(null, userId, password);
-    }
-
-    public static UserDto from(User user) {
-        return new UserDto(user.getId(), user.getUserId(), user.getPassword());
     }
 
     public User toEntity() {

@@ -11,7 +11,7 @@ import java.util.Date;
 public class JwtUtil {
 
     private final String SECRET_KEY = "YPvbbzFd/zkIplw/bHvkltaZwx7NaS3xeLcF+CBFeCo=";
-    private final long TOKEN_EXPIRE_TIME = 30 * 60 * 1000;
+    private final long TOKEN_EXPIRE_TIME = 12 * 60 * 60 * 1000; // 12시간
 
     // 토큰 생성
     public String generateToken(String userId) {

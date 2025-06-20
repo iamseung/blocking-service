@@ -1,4 +1,4 @@
-package com.example.blocking_service.dto;
+package com.example.blocking_service.domain.dto;
 
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;

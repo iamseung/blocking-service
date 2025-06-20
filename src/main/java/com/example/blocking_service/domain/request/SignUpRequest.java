@@ -1,6 +1,7 @@
-package com.example.blocking_service.dto;
+package com.example.blocking_service.domain.request;
 
-import com.example.blocking_service.entity.User;
+import com.example.blocking_service.domain.dto.UserDto;
+import com.example.blocking_service.domain.entity.User;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class SignUpRequest {
-
     @NotBlank private String userId;
     @NotBlank private String password;
 
