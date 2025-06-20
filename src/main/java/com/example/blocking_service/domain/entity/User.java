@@ -20,13 +20,13 @@ public class User extends AuditingFields {
     @Column(nullable = false)
     @Setter private String password;
 
-    public User(Long id, String userId, String password) {
+    private User(Long id, String userId, String password) {
         this.id = id;
         this.userId = userId;
         this.password = password;
     }
 
-    public User(String userId, String password) {
+    private User(String userId, String password) {
         this.userId = userId;
         this.password = password;
     }
