@@ -24,6 +24,12 @@ public interface UserExtensionRepository extends JpaRepository<UserExtension, Lo
     @Query("SELECT COUNT(ue) FROM UserExtension ue WHERE ue.user.id = :userId AND ue.extension.extensionType = 'CUSTOM'")
     long countCustomExtensionsByUserId(@Param("userId") Long userId);
 
+    // 고정 삭제
+    @Modifying
+    @Query("DELETE FROM UserExtension ue WHERE ue.user.id = :userId AND ue.extension.id = :extensionId")
+    void deleteByUserIdAnd_ExtensionId(@Param("userId") Long userId, @Param("extensionId") Long extensionId);
+
+    // 커스텀 삭제
     @Modifying
     @Query("DELETE FROM UserExtension ue WHERE ue.user.id = :userId AND ue.id = :extensionId")
     void deleteByUserIdAndExtensionId(@Param("userId") Long userId, @Param("extensionId") Long extensionId);

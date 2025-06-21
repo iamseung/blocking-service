@@ -7,6 +7,7 @@ import com.example.blocking_service.domain.entity.User;
 import com.example.blocking_service.exception.BaseException;
 import com.example.blocking_service.repository.ExtensionRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 import static com.example.blocking_service.exception.ErrorCode.NOT_EXIST_EXTENSION;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ExtensionService {
@@ -42,5 +44,22 @@ public class ExtensionService {
                 .orElseGet(() -> extensionRepository.save(Extension.of(extensionName, ExtensionType.CUSTOM)));
     }
 
+    @Transactional
+    public void cleanUpOrphanedCustomExtensions() {
+        List<Extension> orphaned = findAllCustomExtensionsWithNoUser();
+        if (!orphaned.isEmpty()) {
+            extensionRepository.deleteAll(orphaned);
+            log.info("정리된 커스텀 확장자 수: {}", orphaned.size());
+        }
+    }
 
+    @Transactional(readOnly = true)
+    public List<Extension> findAllCustomExtensionsWithNoUser() {
+        return extensionRepository.findAllCustomExtensionsWithNoUser();
+    }
+
+    @Transactional
+    public void deleteAll(List<Extension> extensions) {
+        extensionRepository.deleteAll(extensions);
+    }
 }

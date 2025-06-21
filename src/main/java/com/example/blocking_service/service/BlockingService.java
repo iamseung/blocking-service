@@ -57,7 +57,7 @@ public class BlockingService {
             User user = userService.findUserById(userDto.getId());
             userExtensionService.createUserExtension(user, extension);
         } else {
-            userExtensionService.deleteByUserIdAndExtensionId(userDto.getId(), extensionId);
+            userExtensionService.deleteByUserIdAnd_ExtensionId(userDto.getId(), extensionId);
         }
     }
 
