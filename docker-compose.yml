@@ -1,16 +1,36 @@
-version: '3.7'
+version: "3.8"
+
 services:
-  mysql:
+  blocking-mysql:
     container_name: blocking-mysql
-    image: ubuntu/mysql:edge
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --explicit_defaults_for_timestamp=1
-    ports:
-      - 3306:3306
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    image: lnoah/blocking-mysql
     environment:
       - MYSQL_DATABASE=blocking
       - MYSQL_USER=abcd
       - MYSQL_PASSWORD=1234
       - MYSQL_ROOT_PASSWORD=1234
-      - TZ=UTC
+      - TZ=Asia/Seoul
     volumes:
+      - ./mysql/config:/etc/mysql/conf.d
       - ./mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  blocking-app:
+    container_name: blocking-app
+    build:
+      context: .
+    image: lnoah/blocking-app
+    depends_on:
+      - blocking-mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://blocking-mysql:3306/blocking?useUnicode=true&characterEncoding=utf8
+      - SPRING_DATASOURCE_USERNAME=abcd
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - "80:8080"
+    restart: always
