@@ -158,3 +158,6 @@ List<UserExtension> findByUserIdAndExtension_ExtensionType(Long userId, Extensio
 - **예외 처리**: `GlobalExceptionHandler`를 통해 예외 상황을 일관되게 처리하였으며, 각 도메인에서 책임 있는 검증 로직을 통해 유효성 체크를 분산했습니다.
 
 이러한 SRP 기반 구조는 유지보수 시 각 계층이 독립적으로 변경 가능하게 하여 **확장성과 테스트 용이성**을 높였습니다.
+
+### 5. 사용하지 않는 커스텀 확장자, Extension 삭제 스케줄러
+> 사용하지 않는 커스텀 확장자, 개인이 생성하고 지운 확장자에 대해선 스케줄러를 통해 별도로 삭제 로직을 구현했습니다.
